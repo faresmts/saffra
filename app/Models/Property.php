@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Property extends Model
 {
@@ -16,4 +17,9 @@ class Property extends Model
         'is_active',
         'address',
     ];
+
+    public function propertyOutflows(): HasMany
+    {
+        return $this->hasMany(PropertyOutflow::class);
+    }
 }
