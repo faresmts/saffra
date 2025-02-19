@@ -20,26 +20,20 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class SaffraPanelProvider extends PanelProvider
 {
-    /**
-     * @throws \Exception
-     */
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('saffra')
-            ->path('app')
-            ->login()
+            ->path('saffra')
             ->colors([
-                'primary' => Color::Lime,
-                'gray' => Color::Gray,
+                'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Saffra/Resources'), for: 'App\\Filament\\Saffra\\Resources')
+            ->discoverPages(in: app_path('Filament/Saffra/Pages'), for: 'App\\Filament\\Saffra\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Saffra/Widgets'), for: 'App\\Filament\\Saffra\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
