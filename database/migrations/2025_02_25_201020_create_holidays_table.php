@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_outflows', function (Blueprint $table) {
+        Schema::create('holidays', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
+            $table->date('date');
             $table->string('description');
-            $table->decimal('value', 10, 2);
-            $table->foreignId('property_id')->constrained('properties');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_outflows');
+        Schema::dropIfExists('holidays');
     }
 };

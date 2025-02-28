@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_outflows', function (Blueprint $table) {
+        Schema::create('machineries', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
-            $table->string('description');
-            $table->decimal('value', 10, 2);
-            $table->foreignId('property_id')->constrained('properties');
+            $table->string('name');
+            $table->string('manufacturer');
+            $table->date('fabricated_at');
+            $table->date('purchased_at');
+            $table->decimal('cost', 15, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_outflows');
+        Schema::dropIfExists('machineries');
     }
 };

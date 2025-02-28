@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'cepea' => [
+        'api' => env('CEPEA_API'),
+    ],
+
 ];

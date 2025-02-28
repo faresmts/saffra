@@ -58,7 +58,7 @@ class PropertyResource extends Resource
                     ->label('Nome')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('address')->label('Endereço'),
-                Tables\Columns\TextColumn::make('size')->label('Tamanho (em hectáres)'),
+                Tables\Columns\TextColumn::make('size')->label('Tamanho (em hectares)'),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Ativa?')
                     ->boolean(),
@@ -68,6 +68,7 @@ class PropertyResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
