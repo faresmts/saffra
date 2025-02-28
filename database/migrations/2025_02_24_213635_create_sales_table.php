@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Supply;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_outflows', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
-            $table->string('description');
-            $table->decimal('value', 10, 2);
-            $table->foreignId('property_id')->constrained('properties');
+            $table->foreignIdFor(Supply::class);
+            $table->integer('quantity');
+            $table->string('payer');
+            $table->timestamp('sold_at');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_outflows');
+        Schema::dropIfExists('sales');
     }
 };

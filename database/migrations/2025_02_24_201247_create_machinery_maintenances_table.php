@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Machinery;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_outflows', function (Blueprint $table) {
+        Schema::create('machinery_maintenances', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
-            $table->string('description');
-            $table->decimal('value', 10, 2);
-            $table->foreignId('property_id')->constrained('properties');
+            $table->foreignIdFor(Machinery::class)->constrained();
+            $table->date('date');
+            $table->decimal('cost', 15, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_outflows');
+        Schema::dropIfExists('machinery_maintenances');
     }
 };

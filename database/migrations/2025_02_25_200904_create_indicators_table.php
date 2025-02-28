@@ -6,26 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('property_outflows', function (Blueprint $table) {
+        Schema::create('indicators', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
             $table->string('description');
-            $table->decimal('value', 10, 2);
-            $table->foreignId('property_id')->constrained('properties');
+            $table->string('external_id')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('property_outflows');
+        Schema::dropIfExists('indicators');
     }
 };

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PropertyOutflowResource\Pages;
 use App\Models\PropertyOutflow;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,7 +15,7 @@ class PropertyOutflowResource extends Resource
 {
     protected static ?string $model = PropertyOutflow::class;
 
-    protected static ?string $modelLabel = 'Saida de Propriedades';
+    protected static ?string $modelLabel = 'Gastos de Propriedades';
 
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
@@ -26,20 +27,26 @@ class PropertyOutflowResource extends Resource
             ->schema([
                 Forms\Components\Grid::make()->schema([
                     Forms\Components\TextInput::make('description')
+                        ->label('Descrição')
                         ->required()
                         ->maxLength(255)
-                        ->label('Descrição')
                         ->columnSpan(4),
-                    Forms\Components\DateTimePicker::make('date')
+
+                    Forms\Components\DatePicker::make('date')
+                        ->label('Data da saída')
+                        ->native(false)
+                        ->displayFormat('d/m/Y')
                         ->required(),
+
                     Forms\Components\TextInput::make('value')
+                        ->label('Valor')
                         ->required()
                         ->numeric()
-                        ->inputMode('decimal')
-                        ->label('Valor')
                         ->minValue(1)
-                        ->columnSpan(1),
+                        ->minValue(1),
+
                     Forms\Components\Select::make('property_id')
+                        ->label('Propriedade')
                         ->relationship('property', 'name')
                         ->required(),
                 ])->columns(4),
@@ -52,20 +59,24 @@ class PropertyOutflowResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('description')
                     ->label('Descrição'),
+
                 Tables\Columns\TextColumn::make('value')
                     ->label('Valor'),
+
                 Tables\Columns\TextColumn::make('date')
-                    ->label('Data da saida')
-                    ->dateTime(),
+                    ->label('Data da saída')
+                    ->date('d/m/Y'),
+
                 Tables\Columns\TextColumn::make('property.name')
                     ->label('Propriedade'),
 
-            ])
+            ])->defaultSort('date', 'desc')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
