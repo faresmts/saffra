@@ -12,7 +12,6 @@ class Forecast extends Model
     protected $fillable = [
         'supply_id',
         'date',
-        'sold',
         'forecast'
     ];
 }

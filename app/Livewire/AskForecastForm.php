@@ -98,6 +98,7 @@ class AskForecastForm extends Component implements HasForms
             return;
         }
 
+// TODO: Dispatch Job when the system is ready with trained models
 //        GenerateForecastJob::dispatch(
 //            $targetDate,
 //            $supply
@@ -126,6 +127,4 @@ class AskForecastForm extends Component implements HasForms
     {
         return view('livewire.ask-forecast-form');
     }
-
-
 }

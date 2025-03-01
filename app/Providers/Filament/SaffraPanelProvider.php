@@ -55,6 +55,7 @@ class SaffraPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->brandLogo(asset('images/saffra.png'))
             ->authMiddleware([
                 Authenticate::class,
             ]);

@@ -45,14 +45,16 @@ class ForecastsChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Previsão',
+                    'label' => 'Previsto',
                     'data' => $forecasts->pluck('forecast')->toArray(),
-                    'borderColor' => '#4c51bf',
+                    'borderColor' => '#58a832',
+                    'backgroundColor' => '#58a832',
                 ],
                 [
                     'label' => 'Vendido',
                     'data' => $forecasts->pluck('quantity')->toArray(),
-                    'borderColor' => '#f56565',
+                    'borderColor' => '#32a894',
+                    'backgroundColor' => '#32a894',
                 ]
             ],
             'labels' => $labels,
